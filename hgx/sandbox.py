@@ -6,7 +6,7 @@ import numpy as np
 import hypernetx as hnx
 
 
-name_of_sample = "gentiana_pubigera"
+name_of_sample = "erythroxylum_coca"
 file_mgf = f"data/{name_of_sample}.mgf"
 
 # alternatively, we iterate over *.mgf files in a directory
@@ -25,7 +25,7 @@ for file in os.listdir(mgf_path):
 
 spectra = list(load_from_mgf(file_mgf))
 
-spectra = load_and_filter_from_mgf(path = file_mgf, intensity_from=5E5, intensity_to = np.inf, no_peaks = 2, intensity_percent = 5)
+spectra = load_and_filter_from_mgf(path = file_mgf, intensity_from=1E6, intensity_to = np.inf, no_peaks = 2, intensity_percent = 5)
 
 round(spectra['erythroxylum_coca'][0].get("precursor_mz"), 1)
 
@@ -115,7 +115,7 @@ for species in collection_of_spectra:
         mz_values.append(round(spectrum.get("precursor_mz"), 1))
         hg_dict[f"f_{species}_{spectrum.get('feature_id')}"] = list(set(mz_values))
 
-    hg_dict[f"taxon_{species}"] = list(set([round(spectrum.get("precursor_mz"), 1) for spectrum in collection_of_spectra[species]]))
+    # hg_dict[f"taxon_{species}"] = list(set([round(spectrum.get("precursor_mz"), 1) for spectrum in collection_of_spectra[species]]))
 
 
 
